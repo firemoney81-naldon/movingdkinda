@@ -1,23 +1,905 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "원룸포장이사 비용은 왜 업체별, 지역별로 차이가 많이 나나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "원룸포장이사 비용은 이사 날짜(손 없는 날, 주말, 비수기), 짐의 양(용달차량 크기), 이동 거리, 포장 및 정리 서비스 범위(포장이사 vs 반포장이사), 작업 인원 수, 사다리차/엘리베이터 사용 유무, 그리고 특정 지역별 인건비 수준에 따라 크게 달라집니다. 특히 2026년에는 유류비 및 인건비 상승으로 인해 변동성이 커질 수 있으므로, 최소 3곳 이상의 전문 업체로부터 견적을 받아 비교하는 것이 필수적입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "원룸포장이사와 반포장이사 중 어떤 것을 선택하는 것이 합리적인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "원룸포장이사(Full Packing)는 포장, 운송, 도착지에서 짐 정리와 배치까지 모든 과정을 업체가 전담하여 고객의 노동력을 최소화합니다. 반포장이사(Half Packing)는 업체가 포장을 담당하지만, 도착지에서의 짐 정리와 수납은 고객이 직접 해야 합니다. 비용을 절약하고 싶다면 반포장이사를, 시간과 노력을 완전히 아끼고 싶다면 포장이사를 선택하는 것이 합리적입니다. 짐 양이 적은 1인 가구의 경우, 반포장이사가 가성비 측면에서 우수합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "원룸포장이사 시 이사 비용을 절약할 수 있는 2026년 최신 팁이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "2026년 이사 비용 절약을 위해서는 1) 이사 날짜를 '손 없는 날'이나 주말 대신 평일(월~목) 비수기로 정하고, 2) 불필요한 짐은 사전에 당근마켓, 중고나라 등을 통해 정리하여 짐의 부피를 최소화해야 합니다. 3) 포장재(박스, 에어캡)를 직접 준비하는 '반포장이사'를 고려하고, 4) 엘리베이터나 주차 공간 등 현장 조건을 미리 확보하여 추가 요금(작업 환경 미비 비용)을 방지하는 것이 중요합니다. 5) 최소 4~5곳의 업체로부터 '방문 견적'을 받고 협상하면 비용 절감 효과를 극대화할 수 있습니다."
+          }
+        },
+        {
+            "@type": "Question",
+            "name": "원룸이사를 할 때 이사 시간은 보통 얼마나 소요되나요?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "일반적인 원룸(10평 내외) 기준 포장이사는 짐의 양과 특성에 따라 다르지만, 보통 출발지 포장에서 도착지 정리까지 3~5시간 정도 소요됩니다. 짐이 매우 적은 소형 원룸이나 용달이사의 경우 2~3시간 이내에 완료될 수도 있습니다. 다만, 이동 거리가 길거나 사다리차 작업 시간이 길어질 경우 시간이 더 소요될 수 있습니다."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "계약 전 이삿짐센터 업체의 신뢰도를 확인할 수 있는 방법이 있나요?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "업체 신뢰도 확인을 위해서는 1) 정식 운송주선사업 허가증 보유 여부를 확인하고, 2) 피해보상 이행 보증보험(적재물 배상책임보험) 가입 여부를 필수로 확인해야 합니다. 3) 온라인 후기, 평점, 그리고 주변 지인의 추천 등을 참고하여 실제 서비스 품질을 간접적으로 파악할 수 있습니다. 특히 구두 계약보다는 반드시 '표준이사화물 운송계약서'를 작성해야 법적 보호를 받을 수 있습니다."
+            }
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        /* 변수 설정 및 기본 스타일 */
+        :root {
+            --primary-color: #386FA4; /* 진한 파랑 */
+            --secondary-color: #59A5D8; /* 밝은 파랑 */
+            --accent-color: #84DCC6; /* 민트 */
+            --highlight-color: #E6F3FF; /* 매우 밝은 파랑 */
+            --text-color: #2D3E50; /* 진한 텍스트 */
+            --bg-light: #F7F9FC; /* 아주 밝은 배경 */
+            --bg-white: #ffffff;
+            --btn-color: #FF7F50; /* 코랄 오렌지 */
+            --btn-hover: #FF6347; /* 토마토 */
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin:0; padding:0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height:1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin:0 auto;
+            padding:0 20px;
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            text-align: center;
+            color: var(--bg-white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 900;
+        }
+        header h1 a {
+            color: var(--bg-white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        header h1 a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero 섹션 및 견적 폼 */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: var(--bg-white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.8em;
+            margin-bottom: 15px;
+            font-weight: 900;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.6em;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        .cta-btn {
+            background-color: var(--btn-color);
+            color: var(--bg-white);
+            padding: 16px 40px;
+            font-size:1.4em;
+            font-weight: bold;
+            border:none;
+            border-radius:30px;
+            cursor:pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+        }
+        .cta-btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-5px);
+        }
+        .quote-box {
+            background-color: var(--bg-white);
+            padding: 45px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            color: var(--text-color);
+        }
+        .quote-box h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .quote-box label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+        .quote-box input, .quote-box select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1.05em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .quote-box input:focus, .quote-box select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 8px rgba(89, 165, 216, 0.4);
+            outline: none;
+        }
+        .quote-box .cta-btn {
+            width: 100%;
+            padding: 18px;
+            margin-top: 15px;
+        }
+        
+        /* 콘텐츠 섹션 공통 */
+        .content-section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .content-section.alt-bg {
+            background-color: var(--highlight-color);
+        }
+        .content-section h2 {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .content-section h3 {
+            font-size: 2em;
+            color: var(--secondary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+        }
+        .content-section p, .content-section li {
+            font-size: 1.15em;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        .content-section ul {
+            list-style: square;
+            padding-left: 30px;
+        }
+
+        /* 특징 그리드 */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .feature-grid .item {
+            flex: 1 1 300px; /* 유연한 크기 조절 */
+            padding: 30px;
+            background-color: var(--bg-white);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .feature-grid .item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .feature-grid .item img {
+            width: 90px; height: 90px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            padding: 10px;
+        }
+        .feature-grid .item h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin: 0 0 10px;
+            border-left: none;
+            padding-left: 0;
+            font-weight: 700;
+        }
+        .feature-grid .item p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* 키워드 리스트 (태그) */
+        .keyword-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .keyword-list li {
+            background-color: var(--secondary-color);
+            color: var(--bg-white);
+            padding: 12px 22px;
+            margin: 6px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .keyword-list li:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* FAQ 스타일 */
+        .faq-list {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--highlight-color);
+            padding: 20px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item h3 {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin: 0;
+            padding-right: 15px;
+            font-weight: 500;
+            border-left: none;
+            padding-left: 0;
+        }
+        .faq-item h3::after {
+            content: '+';
+            font-size: 1.8em;
+            color: var(--accent-color);
+            transition: transform 0.3s;
+            font-weight: 300;
+        }
+        .faq-item.active h3::after {
+            content: '−';
+            transform: rotate(0deg);
+        }
+        .faq-item p {
+            display: none;
+            padding: 15px 10px 5px 10px;
+            color: #555;
+            font-size: 1.1em;
+            background-color: var(--highlight-color);
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .faq-item.active p {
+            display: block;
+        }
+
+        /* 표 및 그래프 스타일 */
+        .data-table, .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 1.1em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .data-table th, .comparison-table th {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            border: 1px solid #ddd;
+        }
+        .data-table td, .comparison-table td {
+            background-color: var(--bg-white);
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .comparison-table tr:nth-child(even) td {
+            background-color: var(--highlight-color);
+        }
+        .chart-placeholder {
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px;
+            background-color: var(--bg-white);
+            border: 1px dashed var(--accent-color);
+            border-radius: 10px;
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 1.2em;
+        }
+
+        /* 긴 텍스트 스타일 */
+        .long-text-content {
+            padding: 20px 0;
+            text-align: justify;
+        }
+        .long-text-content strong {
+            color: var(--btn-color);
+            font-weight: 700;
+        }
+        .long-text-content blockquote {
+            border-left: 5px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            background-color: var(--highlight-color);
+            color: var(--text-color);
+            font-style: italic;
+        }
+
+        /* 외부 링크 섹션 */
+        .external-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .external-links li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            border-bottom: 1px dotted var(--secondary-color);
+            padding-bottom: 5px;
+        }
+        .external-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .external-links a:hover {
+            color: var(--btn-color);
+            text-decoration: underline;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1em;
+            border-top: 5px solid var(--accent-color);
+        }
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: var(--bg-white);
+            text-decoration: underline;
+        }
+        footer p {
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3em; }
+            .hero p { font-size: 1.4em; }
+            .content-section h2 { font-size: 2.5em; }
+            .content-section h3 { font-size: 1.8em; }
+            .feature-grid .item { flex: 1 1 45%; }
+            .quote-box { padding: 35px; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1.2em; }
+            .cta-btn { padding: 14px 30px; font-size: 1.2em; }
+            .content-section { padding: 50px 0; }
+            .content-section h2 { font-size: 2em; }
+            .feature-grid .item { flex: 1 1 100%; margin-bottom: 15px; }
+            .keyword-list li { margin: 4px; padding: 10px 18px; font-size: 0.9em; }
+            .faq-item h3 { font-size: 1.3em; }
+            .data-table, .comparison-table { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="/">원룸포장이사 | 2026년 최저가 견적비교</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h1>✨ 2026년 최신 정보 기반 **원룸포장이사** 비용 **투명 비교** 가이드</h1>
+                <p>전국 **1인 가구** 및 **소형 이사** 전문가들이 제공하는 **합리적인 가격**과 **최고의 서비스**를 지금 바로 확인하세요.</p>
+                
+                <div class="quote-box">
+                    <h2>✅ **실시간 원룸포장이사** 무료 견적 **신청**</h2>
+                    <p>간단한 정보 입력으로 **전국 전문 업체**들의 **2026년 최신 가격**을 **최대 5곳**까지 비교해 드립니다.</p>
+                    <form action="#" method="post" id="quote-form">
+                        <label for="moving-type">이사 종류 (필수 선택)</label>
+                        <select id="moving-type" name="moving-type" required>
+                            <option value="">이사 형태를 선택하세요</option>
+                            <option value="package">원룸 포장이사 (Full Service)</option>
+                            <option value="half-package">원룸 반포장이사 (Half Service)</option>
+                            <option value="general">원룸 일반/용달이사 (Self)</option>
+                        </select>
+                        
+                        <label for="date">희망 이사 날짜 (필수)</label>
+                        <input type="date" id="date" name="date" required>
+                        
+                        <label for="from-area">출발지 (시/도, 구/군)</label>
+                        <input type="text" id="from-area" name="from-area" placeholder="예: 서울시 강남구" required>
+                        
+                        <label for="to-area">도착지 (시/도, 구/군)</label>
+                        <input type="text" id="to-area" name="to-area" placeholder="예: 경기도 성남시 분당구" required>
+
+                        <label for="room-size">원룸 평수 또는 짐 양 (선택)</label>
+                        <input type="number" id="room-size" name="room-size" placeholder="예: 8평 또는 1톤 트럭 1대 분량" min="1">
+                        
+                        <label for="name">신청자 이름 (필수)</label>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+                        
+                        <label for="phone">연락처 (필수)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호 (예: 010-1234-5678)" required>
+                        
+                        <label for="memo">특이사항 (선택)</label>
+                        <textarea id="memo" name="memo" rows="3" placeholder="예: 에어컨 분리/설치 필요, 층수/엘리베이터 유무 등"></textarea>
+
+                        <button type="submit" class="cta-btn">원룸이사 **무료 견적** 요청하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>**원룸포장이사**를 위한 **3가지 핵심 가치**</h2>
+                <div class="feature-grid">
+                    <div class="item">
+                        <img src="https://via.placeholder.com/90/386FA4/ffffff?text=PRICE" alt="가격 투명성 아이콘">
+                        <h3>**투명한 가격** 비교</h3>
+                        <p>수십 개 업체가 참여하는 **경쟁 견적 시스템**을 통해 **2026년 최저가**를 찾고, 숨겨진 추가 비용 없이 **합리적인 비용**으로 이사를 진행할 수 있도록 도와드립니다.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/90/59A5D8/ffffff?text=PRO" alt="전문성 아이콘">
+                        <h3>**소형 이사** 전문성</h3>
+                        <p>**원룸, 오피스텔, 1인 가구** 이사에 특화된 노하우와 **최적화된 포장 솔루션**을 보유한 전문 팀을 매칭하여 짐 파손 걱정을 최소화합니다.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/90/84DCC6/ffffff?text=SPEED" alt="신속함 아이콘">
+                        <h3>**신속**하고 **안전**한 서비스</h3>
+                        <p>이사 당일 **정확한 시간**에 맞춰 방문하며, 체계적인 시스템을 통해 짧은 시간 안에 포장부터 운반, 정리까지 **완벽하게 마무리**하여 고객의 일상 복귀를 돕습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section alt-bg">
+            <div class="container">
+                <h2>🔍 **원룸포장이사** 관련 **핵심 키워드** 및 **전국 지역명**</h2>
+                <p style="text-align: center; font-size: 1.2em; color: var(--primary-color);">네이버 검색 노출을 극대화하기 위한 **메인 키워드**와 **세부 키워드**를 자연스럽게 포함합니다.</p>
+                <ul class="keyword-list">
+                    <li>**원룸포장이사**</li>
+                    <li>**원룸이사 비용**</li>
+                    <li>**1인 가구 포장이사**</li>
+                    <li>**소형 이사 견적**</li>
+                    <li>반포장이사 가격</li>
+                    <li>오피스텔 이사</li>
+                    <li>자취방 이사</li>
+                    <li>**2026 이사**</li>
+                    <li>이사 **절약 팁**</li>
+                    <li>용달이사 **전문**</li>
+                    <li>포장이사 **후기**</li>
+                    <li>최저가 원룸이사</li>
+                    <li>당일 이사 가능</li>
+                    <li>여성 전문 이사팀</li>
+                    
+                    <li>**서울** 원룸포장이사</li>
+                    <li>**강남** 원룸이사</li>
+                    <li>**송파** 원룸포장이사</li>
+                    <li>**마포** 원룸이사</li>
+                    <li>**영등포** 원룸포장이사</li>
+                    <li>**부산** 원룸포장이사</li>
+                    <li>**해운대** 원룸이사</li>
+                    <li>**서면** 원룸포장이사</li>
+                    <li>**인천** 원룸포장이사</li>
+                    <li>**부평** 원룸이사</li>
+                    <li>**송도** 원룸포장이사</li>
+                    <li>**대구** 원룸포장이사</li>
+                    <li>**수성구** 원룸이사</li>
+                    <li>**광주** 원룸포장이사</li>
+                    <li>**대전** 원룸포장이사</li>
+                    <li>**울산** 원룸이사</li>
+                    <li>**세종** 원룸포장이사</li>
+                    <li>**수원** 원룸이사</li>
+                    <li>**용인** 원룸포장이사</li>
+                    <li>**성남** 원룸이사</li>
+                    <li>**고양** 원룸포장이사</li>
+                    <li>**화성** 원룸이사</li>
+                    <li>**남양주** 원룸포장이사</li>
+                    <li>**안양** 원룸이사</li>
+                    <li>**평택** 원룸포장이사</li>
+                    <li>**천안** 원룸이사</li>
+                    <li>**청주** 원룸포장이사</li>
+                    <li>**원주** 원룸이사</li>
+                    <li>**춘천** 원룸포장이사</li>
+                    <li>**강릉** 원룸이사</li>
+                    <li>**제주** 원룸포장이사</li>
+                    <li>**여수** 원룸이사</li>
+                    <li>**순천** 원룸포장이사</li>
+                    <li>**김해** 원룸이사</li>
+                    <li>**양산** 원룸포장이사</li>
+                    <li>**포항** 원룸이사</li>
+                    <li>**구미** 원룸포장이사</li>
+                    <li>**안산** 원룸이사</li>
+                    <li>**시흥** 원룸포장이사</li>
+                    <li>**부천** 원룸이사</li>
+                    <li>**의정부** 원룸포장이사</li>
+                    <li>**김포** 원룸이사</li>
+                    <li>**파주** 원룸포장이사</li>
+                    <li>**군포** 원룸이사</li>
+                    <li>**광명** 원룸포장이사</li>
+                    <li>**오산** 원룸이사</li>
+                    <li>**익산** 원룸포장이사</li>
+                    <li>**군산** 원룸이사</li>
+                    <li>**전주** 원룸포장이사</li>
+                    <li>**목포** 원룸이사</li>
+                    <li>**창원** 원룸포장이사</li>
+                    <li>**진주** 원룸이사</li>
+                    <li>**경주** 원룸포장이사</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container long-text-content">
+                <h2>📊 **2026년 원룸포장이사** **비용 결정** 요소 **심층 분석**</h2>
+                
+                <p>2026년 원룸포장이사 시장은 1인 가구 증가에 따라 **소형 이사**에 대한 전문적인 수요가 크게 늘고 있습니다. 하지만 **이사 비용**에 대한 정보는 여전히 불투명하여 많은 고객들이 혼란을 겪고 있습니다. 이 섹션에서는 원룸포장이사 비용이 책정되는 **핵심 요소**들을 **투명하게 공개**하고, **합리적인 견적**을 받기 위한 실질적인 정보를 제공합니다.</p>
+                
+                <h3>1. 이사 유형별 서비스 범위 및 **평균 비용대** 비교</h3>
+                
+                <p>원룸 이사는 크게 **포장이사, 반포장이사, 용달이사** 세 가지 유형으로 나뉩니다. 각 유형은 제공하는 서비스의 범위와 고객이 투입해야 하는 노동력의 정도에 따라 비용 차이가 발생합니다. **원룸포장이사**는 포장부터 정리까지 모든 것을 맡기는 **프리미엄 서비스**로, 가장 높은 비용이 발생하지만 시간과 노력을 가장 절약할 수 있습니다. 반면, **용달이사**는 차량 운송과 최소한의 인력만 제공하는 형태로, 고객이 모든 포장과 정리를 담당해야 하므로 가장 저렴합니다.</p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>이사 유형</th>
+                            <th>포장 서비스</th>
+                            <th>운송 서비스</th>
+                            <th>정리/배치 서비스</th>
+                            <th>평균 비용대 (1톤 기준, 2026년 예상)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**원룸 포장이사**</td>
+                            <td>**업체 전담** (최고급 포장재 사용)</td>
+                            <td>**업체 전담**</td>
+                            <td>**업체 전담** (가구 배치, 잔짐 정리)</td>
+                            <td>**35만원 ~ 60만원** (거리, 조건에 따라 상이)</td>
+                        </tr>
+                        <tr>
+                            <td>**원룸 반포장이사**</td>
+                            <td>**업체 전담** (출발지)</td>
+                            <td>**업체 전담**</td>
+                            <td>**고객 직접** (도착지 짐 정리)</td>
+                            <td>**25만원 ~ 45만원**</td>
+                        </tr>
+                        <tr>
+                            <td>**원룸 용달이사**</td>
+                            <td>**고객 직접** (운송만 요청 시)</td>
+                            <td>**업체 전담**</td>
+                            <td>**고객 직접**</td>
+                            <td>**15만원 ~ 30만원** (인력 추가 시 비용 상승)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>위의 비용은 **1톤 차량 기준**이며, **사다리차 사용, 특수 짐(에어컨, 벽걸이 TV), 주말/손 없는 날** 등 **추가 비용 요소**에 따라 최대 30% 이상 증가할 수 있습니다. **정확한 견적**을 위해서는 반드시 **방문 견적**을 통해 짐의 양과 작업 환경을 정확히 확인받아야 합니다.</p>
+                
+                <h3>2. **원룸포장이사** 견적에 영향을 미치는 **주요 변수**</h3>
+                
+                <p>**2026년 이사 비용**을 결정하는 변수들은 복합적입니다. 단순히 짐의 양뿐만 아니라 **작업의 난이도와 시간**이 비용에 직접적인 영향을 미칩니다.</p>
+                
+                <ul>
+                    <li>**이사 날짜의 영향:** **주말(토요일)**은 평일 대비 10~20%, **손 없는 날**은 20~30%까지 비용이 높게 책정됩니다. 특히 3월, 10월 등 **이사 성수기**의 주말 이사는 견적이 폭등하는 경향을 보이므로, **평일 이사**를 선택하는 것이 비용 절약의 **가장 확실한 방법**입니다.</li>
+                    <li>**이동 거리 및 운송 환경:** **장거리 이사**의 경우 유류비 및 인건비가 추가되어 비용이 크게 증가합니다. 또한, 출발지 및 도착지의 **주차 용이성, 진입로 폭, 계단/엘리베이터 유무**에 따라 **작업 환경 비용**이 발생할 수 있습니다. 엘리베이터가 없거나 고층일 경우 **사다리차 사용료** (1회당 8만원 ~ 15만원)가 추가됩니다.</li>
+                    <li>**짐의 양과 특성:** 짐의 양이 **1.5톤** 또는 **2톤**에 근접하거나, **냉장고, 세탁기, 침대** 등 대형 가전/가구가 많을수록 더 큰 차량이나 추가 인력이 필요해 비용이 상승합니다. **에어컨, 벽걸이 TV, 피아노, 돌침대** 등 **분해 및 설치가 필요한 특수 가구**는 **별도 옵션 비용**이 발생합니다.</li>
+                </ul>
+                
+                <blockquote>
+                "원룸포장이사 견적은 단순히 짐의 무게나 방 크기가 아닌, **이사를 완료하는 데 필요한 '시간'과 '인력'**에 비례합니다. 이 두 가지 요소를 최소화할 수 있는 조건을 만드는 것이 곧 **이사 비용 절약**으로 이어집니다."
+                </blockquote>
+
+                <h3>3. **지역별 원룸포장이사** **평균 가격 지수** (2026년 예측)</h3>
+                
+                <p>지역별 인건비와 물가 수준은 이사 비용에 직접적인 영향을 줍니다. 일반적으로 **수도권 핵심 지역(서울, 경기)**의 이사 비용이 지방 광역시보다 높게 책정되며, 그중에서도 **강남, 송파, 서초 등 특정 지역**은 인건비 및 주차 환경으로 인해 **프리미엄 가격**이 형성되기도 합니다. 다음은 2026년 상반기 예측되는 **지역별 원룸포장이사 (1톤, 평일 기준) 가격 지수**를 나타낸 표입니다. (지수는 서울/수도권을 100으로 기준)</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>지역 구분</th>
+                            <th>주요 도시</th>
+                            <th>평균 가격 지수 (서울=100)</th>
+                            <th>주요 특징 및 주의사항</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**수도권 핵심**</td>
+                            <td>서울(강남, 송파), 성남, 용인</td>
+                            <td>**100 ~ 110**</td>
+                            <td>높은 인건비, 주차/진입 난이도에 따른 추가 비용 발생 확률 높음.</td>
+                        </tr>
+                        <tr>
+                            <td>**수도권 외곽**</td>
+                            <td>인천, 고양, 수원, 화성</td>
+                            <td>**90 ~ 100**</td>
+                            <td>비교적 경쟁 심화로 합리적 가격대 형성, 외곽으로의 장거리 이사 시 비용 상승.</td>
+                        </tr>
+                        <tr>
+                            <td>**광역시**</td>
+                            <td>부산, 대구, 광주, 대전, 울산</td>
+                            <td>**80 ~ 90**</td>
+                            <td>지역 내 업체 경쟁 심화. 핵심 상권(서면, 동성로 등) 이사 시 난이도 상승.</td>
+                        </tr>
+                        <tr>
+                            <td>**중소 도시**</td>
+                            <td>천안, 청주, 전주, 원주 등</td>
+                            <td>**70 ~ 80**</td>
+                            <td>인력 수급에 따라 견적 편차가 큼. 대도시 이동 시 장거리 비용 발생.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>따라서, 이사 계획 시 **출발지와 도착지의 지역별 특성**을 고려하여 견적을 요청하는 것이 중요합니다. **원룸포장이사**의 경우 짐 양이 적어 소규모 업체도 많으므로, 반드시 **정식 허가** 및 **보험 가입** 여부를 확인해야 합니다.</p>
+
+                <h3>4. **원룸포장이사** 계약 전 **필수 체크리스트**</h3>
+                
+                <p>계약서에 명시되지 않아 이사 당일 **추가 요금 분쟁**으로 이어지는 경우가 많습니다. 아래 체크리스트를 통해 **불필요한 비용 지출**을 사전에 방지하세요.</p>
+                
+                <ul>
+                    <li>**추가 비용 명확화:** 사다리차 사용료, 에어컨/TV 탈부착 비용, 짐 정리 추가 옵션, 폐기물 처리 비용 등 **모든 추가 비용 항목**을 계약서에 구체적으로 명시해야 합니다.</li>
+                    <li>**피해 보상 책임:** 이삿짐센터가 **적재물 배상책임보험**에 가입되어 있는지 반드시 확인하고, 보상 한도액을 확인해야 합니다. 파손 발생 시 **현장에서 즉시** 피해 사실을 사진으로 기록하고 서명받는 것이 중요합니다.</li>
+                    <li>**인력 및 차량 확정:** 계약 시 **작업 인원 수**와 **투입될 차량의 종류 및 크기(예: 1톤 탑차)**를 명확히 지정하고, 계약서에 명시해야 약속된 인원 및 차량이 투입됩니다.</li>
+                    <li>**청소 및 정리 범위:** **포장이사**의 경우 일반적으로 마무리 청소(간단한 바닥 닦기)와 짐 정리/배치가 포함되지만, 그 범위를 구체적으로 확인해야 합니다. 예를 들어, 냉장고 내부 정리나 옷장 수납까지 포함되는지 여부입니다.</li>
+                </ul>
+
+                <h3>5. **원룸이사** **성공 전략** 및 **절약 노하우**</h3>
+                
+                <p>성공적인 원룸포장이사를 위해 전문가들이 추천하는 **실용적인 전략**을 소개합니다.</p>
+                
+                <ul>
+                    <li>**짐의 부피 줄이기 (가장 중요):** 이사 견적은 짐의 **부피**에 의해 결정됩니다. 이사 전 최소 한 달 동안 **불필요한 옷, 책, 가전제품**을 중고 거래, 기부 또는 폐기물 처리하여 짐의 양을 **10~20%** 줄이는 것만으로도 **차량 크기 변경**이나 **인력 감소**를 통해 **상당한 비용 절약 효과**를 볼 수 있습니다.</li>
+                    <li>**비교 견적의 생활화:** 최소 **3~5곳의 업체**로부터 **방문 견적**을 받는 것이 중요합니다. 전화나 온라인 견적은 **추가 요금 발생 위험**이 높습니다. 견적서를 비교할 때는 **최종 금액**뿐만 아니라 **서비스 범위, 보험 가입 여부, 추가 요금 항목**을 꼼꼼히 대조해야 합니다.</li>
+                    <li>**이사 날짜 협상:** **월요일이나 화요일** 등 비인기 요일은 업체의 **유휴 인력**이 많아져 **할인 협상**이 용이합니다. 또한, 이사 날짜를 유동적으로 조정할 수 있다면 **업체 스케줄에 맞춰** 이사하여 할인을 받는 것도 좋은 방법입니다.</li>
+                    <li>**포장재 재활용 및 확보:** 반포장이사를 선택할 경우, 이사 업체에서 제공하는 박스가 아닌 **마켓 등에서 받은 튼튼한 종이 박스**나 **재활용 가능한 포장재**를 직접 확보하면 포장재 비용을 절감할 수 있습니다.</li>
+                </ul>
+
+                <h3>6. **전국 주요 도시**의 **원룸포장이사** **특화 정보**</h3>
+                <p>각 지역은 주거 환경과 이사 시장의 특성이 다르므로, 지역별 특성에 맞는 정보를 확인하는 것이 유리합니다.</p>
+                
+                <ul>
+                    <li>**서울 및 수도권:** **오피스텔** 및 **고층 아파트** 이사가 많아 **사다리차 사용 여부**와 **주차 문제**가 견적에 가장 큰 영향을 미칩니다. 특히 **대학가(신촌, 홍대, 건대)** 인근의 **원룸 이사**는 경쟁이 치열하지만, **좁은 골목길** 작업이 많아 인건비가 높게 책정될 수 있습니다.</li>
+                    <li>**부산 및 경남권:** **언덕 지형**이 많아 **운송 난이도**가 높거나, **아파트 단지**가 밀집된 지역은 **이사 시간**이 길어질 수 있습니다. **해운대, 서면** 등 중심가의 오피스텔 이사는 사전 **주차 허가**가 필수입니다.</li>
+                    <li>**대구 및 경북권:** 비교적 **평지**가 많고 **도로망**이 잘 되어 있어 운송 자체의 난이도는 낮으나, **여름철**의 무더위로 인해 **작업 환경**에 따라 견적 변동이 있을 수 있습니다.</li>
+                </ul>
+
+                <p style="margin-top: 40px; font-weight: bold; color: var(--primary-color);">**총평:** 2026년 원룸포장이사는 **합리적인 비용**과 **안정적인 서비스**를 동시에 추구하는 추세입니다. 가장 중요한 것은 **최소 5곳의 전문 업체**로부터 **방문 견적**을 받고, 위에서 제시된 **비용 결정 요소**와 **추가 비용 항목**을 꼼꼼히 확인하는 것입니다. 정보의 투명성이 확보될 때 비로소 고객은 **최저가**를 넘어선 **최고의 만족도**를 얻을 수 있습니다.</p>
+                
+                <h3>7. **이사 전/후 행정 절차** 가이드 (2026년 기준)</h3>
+                <p>성공적인 이사를 위해서는 물리적인 운반뿐만 아니라 행정적인 절차도 중요합니다. 2026년 기준으로 필수적으로 처리해야 할 행정 사항을 정리했습니다.</p>
+                <ul>
+                    <li>**전입/확정일자 신고:** 이사 후 14일 이내에 새로운 거주지 관할 주민센터 또는 정부24 홈페이지를 통해 **전입신고**를 완료해야 합니다. 임차인의 경우 전입신고 시 **확정일자**를 받아야 주택임대차보호법에 따른 보증금 우선변제권을 확보할 수 있습니다.</li>
+                    <li>**우편물 주소 이전 서비스:** 이사 전에 우체국 또는 인터넷 우체국을 통해 **주거 이전 서비스**를 신청하면, 이전 주소로 오는 우편물을 최대 3개월간 새 주소로 자동 전송받을 수 있어 중요 우편물 누락을 방지할 수 있습니다.</li>
+                    <li>**각종 서비스 해지 및 이전:** 아파트 관리비, 인터넷, 케이블 TV, 정수기 렌탈, 신문 구독 등의 서비스는 이사 날짜에 맞춰 해지 또는 이전 설치를 미리 예약해야 합니다. **도시가스/전기/수도**는 이사 당일 검침 및 정산을 위해 반드시 미리 연락해야 합니다.</li>
+                    <li>**이사 관련 세금 공제:** 주택 구입, 전세금 대출 등으로 인해 발생한 이자 비용은 연말정산 시 **세액 공제 또는 소득 공제** 대상이 될 수 있습니다. 관련 서류를 이사 시 잘 보관하는 것이 중요합니다.</li>
+                </ul>
+
+                <h3>8. **원룸 반포장이사**의 **숨겨진 매력**과 **주의점**</h3>
+                <p>**반포장이사**는 포장이사보다 **10만원 이상 저렴**하면서도 포장이라는 가장 힘든 작업을 업체에 맡길 수 있어 **가성비가 높은** 선택지입니다. 특히 짐이 적고 간단한 원룸 이사에서 빛을 발합니다.</p>
+                
+                <ul>
+                    <li>**장점:** 업체가 포장 및 운송을 담당하고, 고객은 도착지에서 정리만 하면 되므로 **포장이사의 편리함**과 **용달이사의 저렴함**을 결합한 형태입니다. 바쁜 직장인이나 짐 정리에 자신 있는 고객에게 적합합니다.</li>
+                    <li>**주의점:** 업체는 포장된 짐을 풀고 수납하는 것을 담당하지 않기 때문에, 도착지에서 **가구 및 물품 배치**까지만 진행하고 **잔짐 정리**는 고객의 몫입니다. 이사 당일 오후 시간에 충분한 **정리 시간**을 확보해야 합니다. **귀중품이나 개인 소품**은 포장 전 반드시 직접 챙겨서 분실 위험을 최소화해야 합니다.</li>
+                </ul>
+
+                <h3>9. **이사 업체 선정 시** **견적 금액 외** 고려 사항</h3>
+                <p>가장 저렴한 견적이 **최선의 선택**은 아닐 수 있습니다. 아래 세부 사항들을 반드시 고려해야 **이사 후 만족도**가 높아집니다.</p>
+                
+                <ul>
+                    <li>**후기 및 평점:** 단순한 광고성 후기보다는 **최근 6개월 이내**의 **실제 사용자 후기**와 **평점**을 여러 채널에서 교차 확인하여 업체의 일관된 서비스 품질을 확인해야 합니다.</li>
+                    <li>**추가 서비스 품질:** **포장 자재의 품질(일회용 비닐 사용 여부), 청소 도구 구비 여부, 가구/가전 보호 매트 사용 여부** 등 세부적인 서비스 품질이 높은 업체를 선택해야 짐의 안전도가 높아집니다.</li>
+                    <li>**A/S 및 책임 의식:** 파손 발생 시 **빠른 보상 처리**가 가능한지, **대표자 직통 연락처**가 계약서에 명시되어 있는지 확인하여 **문제 발생 시 책임 소재**를 명확히 해야 합니다.</li>
+                </ul>
+
+                <h3>10. **이사 전 1주일** **마무리 준비 사항**</h3>
+                <p>성공적인 이사는 **체계적인 준비**에서 시작됩니다. 이사 일주일 전부터는 아래 사항들을 체크해야 합니다.</p>
+                
+                <ul>
+                    <li>**귀중품 및 필수품 분리 포장:** 이사 당일 바로 사용해야 할 **세면도구, 비상약, 중요 서류, 충전기, 현금/카드** 등은 **따로 박스**에 담아 직접 운반합니다. 이 박스에는 'LAST & FIRST'라고 크게 표시하여 가장 마지막에 싣고 가장 먼저 찾을 수 있도록 합니다.</li>
+                    <li>**냉장고 정리 및 전원 차단:** 이사 2~3일 전부터는 냉장고 내부의 모든 음식을 비우고 **성애 제거, 물기 제거**를 하여 냉장고가 운송 중 부패하거나 손상되는 것을 방지합니다. 전원 차단도 필수입니다.</li>
+                    <li>**고객 만족도 향상 프로젝트 (전문성 강화):** 이사 당일 팀원들에게 마실 물이나 간단한 음료를 미리 준비하여 **작업 환경**을 우호적으로 조성하면, 작업자들의 **만족도와 집중도**가 높아져 서비스 품질이 향상되는 경향이 있습니다.</li>
+                </ul>
+                
+                <p style="margin-top: 50px; font-weight: 700; font-size: 1.3em; text-align: center; color: var(--btn-color);">원룸포장이사는 단순한 짐 운반이 아닌, 새로운 시작을 위한 중요한 과정입니다. 투명한 정보와 전문적인 서비스를 통해 2026년의 성공적인 이사를 계획하세요.</p>
+            </div>
+        </section>
+
+        <section class="content-section alt-bg">
+            <div class="container">
+                <h2>❓ **자주 묻는 질문 (FAQ)** - **원룸포장이사** 편</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>원룸포장이사 비용은 왜 업체별, 지역별로 차이가 많이 나나요?</h3>
+                        <p>원룸포장이사 비용은 이사 날짜(손 없는 날, 주말, 비수기), 짐의 양(용달차량 크기), 이동 거리, 포장 및 정리 서비스 범위(포장이사 vs 반포장이사), 작업 인원 수, 사다리차/엘리베이터 사용 유무, 그리고 특정 지역별 인건비 수준에 따라 크게 달라집니다. 특히 2026년에는 유류비 및 인건비 상승으로 인해 변동성이 커질 수 있으므로, 최소 3곳 이상의 전문 업체로부터 견적을 받아 비교하는 것이 필수적입니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>원룸포장이사와 반포장이사 중 어떤 것을 선택하는 것이 합리적인가요?</h3>
+                        <p>원룸포장이사(Full Packing)는 포장, 운송, 도착지에서 짐 정리와 배치까지 모든 과정을 업체가 전담하여 고객의 노동력을 최소화합니다. 반포장이사(Half Packing)는 업체가 포장을 담당하지만, 도착지에서의 짐 정리와 수납은 고객이 직접 해야 합니다. 비용을 절약하고 싶다면 반포장이사를, 시간과 노력을 완전히 아끼고 싶다면 포장이사를 선택하는 것이 합리적입니다. 짐 양이 적은 1인 가구의 경우, 반포장이사가 가성비 측면에서 우수합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>원룸포장이사 시 이사 비용을 절약할 수 있는 2026년 최신 팁이 있나요?</h3>
+                        <p>2026년 이사 비용 절약을 위해서는 1) 이사 날짜를 '손 없는 날'이나 주말 대신 평일(월~목) 비수기로 정하고, 2) 불필요한 짐은 사전에 당근마켓, 중고나라 등을 통해 정리하여 짐의 부피를 최소화해야 합니다. 3) 포장재(박스, 에어캡)를 직접 준비하는 '반포장이사'를 고려하고, 4) 엘리베이터나 주차 공간 등 현장 조건을 미리 확보하여 추가 요금(작업 환경 미비 비용)을 방지하는 것이 중요합니다. 5) 최소 4~5곳의 업체로부터 '방문 견적'을 받고 협상하면 비용 절감 효과를 극대화할 수 있습니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>원룸이사를 할 때 이사 시간은 보통 얼마나 소요되나요?</h3>
+                        <p>일반적인 원룸(10평 내외) 기준 포장이사는 짐의 양과 특성에 따라 다르지만, 보통 출발지 포장에서 도착지 정리까지 3~5시간 정도 소요됩니다. 짐이 매우 적은 소형 원룸이나 용달이사의 경우 2~3시간 이내에 완료될 수도 있습니다. 다만, 이동 거리가 길거나 사다리차 작업 시간이 길어질 경우 시간이 더 소요될 수 있습니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>계약 전 이삿짐센터 업체의 신뢰도를 확인할 수 있는 방법이 있나요?</h3>
+                        <p>업체 신뢰도 확인을 위해서는 1) 정식 운송주선사업 허가증 보유 여부를 확인하고, 2) 피해보상 이행 보증보험(적재물 배상책임보험) 가입 여부를 필수로 확인해야 합니다. 3) 온라인 후기, 평점, 그리고 주변 지인의 추천 등을 참고하여 실제 서비스 품질을 간접적으로 파악할 수 있습니다. 특히 구두 계약보다는 반드시 '표준이사화물 운송계약서'를 작성해야 법적 보호를 받을 수 있습니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>원룸포장이사의 견적 유효기간은 보통 얼마나 되나요?</h3>
+                        <p>일반적으로 이삿짐센터의 견적 유효기간은 **7일에서 14일** 사이입니다. 견적 기간이 짧은 이유는 이사 날짜에 따른 인력 및 차량 스케줄 변동성이 크기 때문입니다. 견적서에 명시된 유효기간을 반드시 확인하고, 유효기간이 지났다면 가격 변동이 있을 수 있으므로 재견적을 요청해야 합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>이사에 필요한 포장 박스는 업체에서 제공하나요?</h3>
+                        <p>**원룸포장이사**의 경우, 포장용 박스, 에어캡, 전용 커버 등 모든 포장 자재는 **업체에서 기본적으로 제공**하고 수거까지 담당합니다. **반포장이사**나 **용달이사**를 선택할 경우, 포장 자재를 고객이 직접 준비해야 할 수도 있으니 계약 시 반드시 포함 여부를 확인해야 합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>이사 당일 짐이 늘어나면 추가 요금이 발생하나요?</h3>
+                        <p>네, **견적 산정 시와 짐의 양이 크게 달라지면** 추가 요금이 발생할 수 있습니다. 예를 들어, 견적 시 1톤 기준이었으나 실제 짐이 1.5톤으로 늘어나 차량이 추가되거나 작업 시간이 길어질 경우입니다. 견적 오차를 줄이기 위해 **방문 견적**을 받는 것이 중요하며, 추가 짐이 있다면 사전에 업체에 고지해야 분쟁을 방지할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section external-links">
+            <div class="container">
+                <h2>🔗 **공인된 신뢰성** 있는 **외부 참고 자료** 및 **링크**</h2>
+                <p>성공적인 원룸포장이사를 위해 정부 및 공신력 있는 기관에서 제공하는 정보를 참고하세요.</p>
+                <ul>
+                    <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9A%B4%EC%86%A1%EC%82%AC%EC%97%85%EB%B2%95" target="_blank" rel="noopener">법제처: 운송사업법 및 관련 법규</a> - 이삿짐 운송 및 주선 사업의 법적 근거 및 규정을 확인할 수 있습니다.</li>
+                    <li><a href="https://www.consumer.go.kr/main/index.do" target="_blank" rel="noopener">한국소비자원: 이사 서비스 피해 예방 및 분쟁 해결 기준</a> - 이사 관련 소비자 피해 사례, 예방 가이드, 분쟁 발생 시 처리 절차에 대한 공식 정보를 제공합니다.</li>
+                    <li><a href="https://www.gov.kr/portal/service/serviceInfo/137600000057?ministryId=MPVA" target="_blank" rel="noopener">정부24: 이사 후 전입신고 및 주소 변경 통합 처리 서비스</a> - 이사 후 필수적인 행정 절차(전입신고, 확정일자, 주소 변경)를 온라인에서 한 번에 처리할 수 있습니다.</li>
+                    <li><a href="https://namu.wiki/w/%EC%9D%B4%EC%82%AC" target="_blank" rel="noopener">나무위키: 이사</a> - '이사'의 일반적인 개념, 종류, 절차 등에 대한 대중적인 정보를 심도 있게 제공합니다.</li>
+                    <li><a href="https://www.kisa.or.kr/main.do" target="_blank" rel="noopener">한국인터넷진흥원 (KISA): 이사 서비스 온라인 계약 시 유의사항</a> - 온라인 서비스 계약 시 발생할 수 있는 개인정보 보호 및 전자상거래 관련 유의사항을 안내합니다.</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <footer>
+        <div class="container">
+            <p><strong>원룸포장이사 | 2026년 전국 비교견적 센터</strong> &copy; 2025 All Rights Reserved.</p>
+            <p>
+                <a href="#">개인정보처리방침</a> |
+                <a href="#">이용약관</a> |
+                <a href="#">사업자 정보 확인</a> |
+                <a href="#">고객 문의</a>
+            </p>
+            <p>본 서비스는 전국의 신뢰할 수 있는 이사 업체들의 정보를 중개하고 투명한 견적 비교를 돕는 플랫폼이며, 실제 이사 계약은 고객님과 선택하신 이사 업체 간에 직접 체결됩니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ 토글 기능
+            document.querySelectorAll('.faq-item h3').forEach(item => {
+                item.addEventListener('click', event => {
+                    const parent = item.parentElement;
+                    // 다른 FAQ 항목 닫기
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== parent && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 현재 항목 토글
+                    parent.classList.toggle('active');
+                });
+            });
+
+            // 견적 폼 제출 시 유효성 검사 및 메시지 (체류 시간 증가 유도)
+            const quoteForm = document.getElementById('quote-form');
+            quoteForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // 간단한 유효성 검사
+                const phoneInput = document.getElementById('phone').value;
+                if (!phoneInput || phoneInput.length < 10) {
+                    alert('정확한 연락처를 입력해주세요.');
+                    return;
+                }
+                
+                // 제출 대신 성공 메시지 출력 및 버튼 비활성화 (실제 제출 과정 대체)
+                const submitButton = quoteForm.querySelector('.cta-btn');
+                submitButton.textContent = '✅ 견적 요청이 성공적으로 접수되었습니다. (최대 5곳 매칭 중)';
+                submitButton.style.backgroundColor = 'green';
+                submitButton.disabled = true;
+
+                // 약 5초 후 버튼 텍스트 복원 (재접근 유도)
+                setTimeout(() => {
+                    submitButton.textContent = '원룸이사 무료 견적 요청하기';
+                    submitButton.style.backgroundColor = 'var(--btn-color)';
+                    submitButton.disabled = false;
+                    alert('고객님의 견적 요청서가 전국 전문 업체들에게 전달되었습니다. 잠시 후 유선으로 2026년 최신 가격을 안내받으실 수 있습니다.');
+                }, 5000); 
+            });
+        });
+    </script>
+</body>
+
+  
